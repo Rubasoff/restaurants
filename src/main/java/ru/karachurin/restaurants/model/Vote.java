@@ -7,34 +7,26 @@ import java.time.LocalDate;
  * Created by Денис on 15.11.2016.
  */
 @Entity
-@Table (name = "dishes")
-public class Dish extends NamedEntity {
-    @Column (name = "price", nullable = false)
-    private double price;
-
-    @Column (name = "date", nullable = false)
+@Table(name = "user_votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date"}, name = "user_votes_unique_user_id_date_idx")})
+public class Vote extends NamedEntity {
+    @Column(name = "date", nullable = false)
     private LocalDate date;
+
+    @Column(name = "user", nullable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
     private Restaurant restaurant;
 
-    public Dish() {
+    public Vote() {
     }
 
-    public Dish(Integer id, String name, double price, LocalDate date, Restaurant restaurant) {
+    public Vote(Integer id, String name, LocalDate date, User user, Restaurant restaurant) {
         super(id, name);
-        this.price = price;
         this.date = date;
+        this.user = user;
         this.restaurant = restaurant;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public LocalDate getDate() {
@@ -43,6 +35,14 @@ public class Dish extends NamedEntity {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Restaurant getRestaurant() {
@@ -55,9 +55,9 @@ public class Dish extends NamedEntity {
 
     @Override
     public String toString() {
-        return "Dish{" +
-                "price=" + price +
-                ", date=" + date +
+        return "Vote{" +
+                "date=" + date +
+                ", user=" + user +
                 ", restaurant=" + restaurant +
                 '}';
     }

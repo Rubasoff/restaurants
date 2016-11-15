@@ -19,13 +19,17 @@ public class Restaurant extends NamedEntity {
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "restaurant")
     List<Dish> menu;
 
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "restaurant")
+    List<Vote> votes;
+
     public Restaurant() {
     }
 
-    public Restaurant(Integer id, String name, String address, String contacts) {
+    public Restaurant(Integer id, String name, String address, String contacts, List<Dish> menu) {
         super(id, name);
         this.address = address;
         this.contacts = contacts;
+        this.menu = menu;
     }
 
     public String getAddress() {
@@ -42,5 +46,22 @@ public class Restaurant extends NamedEntity {
 
     public void setContacts(String contacts) {
         this.contacts = contacts;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "address='" + address + '\'' +
+                ", contacts='" + contacts + '\'' +
+                ", menu=" + menu +
+                '}';
     }
 }

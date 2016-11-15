@@ -1,8 +1,7 @@
 package ru.karachurin.restaurants.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Денис on 15.11.2016.
@@ -11,10 +10,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "restaurants")
 public class Restaurant extends NamedEntity {
-    @Column
+    @Column (name = "address")
     private String address;
-    @Column
+
+    @Column (name = "contacts")
     private String contacts;
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "restaurant")
+    List<Dish> menu;
 
     public Restaurant() {
     }

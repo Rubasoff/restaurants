@@ -16,7 +16,9 @@ public interface DishService {
 
     Dish update(Dish dish);
 
-    Dish save(Dish dish);
+    Dish save(Dish dish, int restaurant_id);
 
-    Collection<Dish> getAllFromRestaurantOnDate(int id, int restaurantId, LocalDate date);
+    Collection<Dish> getAll();
+
+    Collection<Dish> getAllFromRestaurant(int restaurantId);
 }

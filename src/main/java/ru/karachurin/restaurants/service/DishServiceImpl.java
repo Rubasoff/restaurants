@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.karachurin.restaurants.model.Dish;
+import ru.karachurin.restaurants.model.Restaurant;
 import ru.karachurin.restaurants.repository.DishRepository;
+import ru.karachurin.restaurants.repository.RestaurantRepository;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
-import java.time.LocalDate;
 import java.util.Collection;
 
 /**
@@ -18,30 +19,40 @@ import java.util.Collection;
 public class DishServiceImpl implements DishService {
 
     @Autowired
-    DishRepository repository;
+    DishRepository dishRepository;
+
+    @Autowired
+    RestaurantRepository restaurantRepository;
 
     @Override
     public Dish get(int id) throws NotFoundException {
-        return repository.findOne(id);
+        return dishRepository.findOne(id);
     }
 
     @Override
     public void delete(int id) throws NotFoundException {
-
+        dishRepository.delete(id);
     }
 
     @Override
     public Dish update(Dish dish) {
-        return null;
+        return dishRepository.save(dish);
     }
 
     @Override
-    public Dish save(Dish dish) {
-        return null;
+    public Dish save(Dish dish, int restaurantId) {
+        Restaurant restaurant = restaurantRepository.findOne(restaurantId);
+        dish.setRestaurant(restaurant);
+        return dishRepository.save(dish);
     }
 
     @Override
-    public Collection<Dish> getAllFromRestaurantOnDate(int id, int restaurantId, LocalDate date) {
-        return null;
+    public Collection<Dish> getAll() {
+        return (Collection<Dish>) dishRepository.findAll();
+    }
+
+    @Override
+    public Collection<Dish> getAllFromRestaurant(int restaurantId) {
+        return dishRepository.getAllFromRestaurant(restaurantId);
     }
 }

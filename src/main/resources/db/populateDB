@@ -20,5 +20,7 @@ INSERT INTO user_roles (role, user_id) VALUES
 INSERT INTO restaurants (id, NAME, CONTACTS, ADDRESS)
 VALUES (100004, 'Pushkin', '+7 937 777 777', 'ул. Пушкина 53');
 
-INSERT INTO dishes (id, RESTAURANT_ID, NAME, PRICE, DATE)
-VALUES (100005, 100004, 'Лапша', 40.50, DATE '2016-11-16');
+INSERT INTO dishes (id, RESTAURANT_ID, NAME, PRICE)
+VALUES (100005, 100004, 'Pasta', 40.50),
+       (100006, 100004, 'Pizza', 10.00),
+       (100007, 100004, 'Steak', 70.30);

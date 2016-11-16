@@ -25,11 +25,10 @@ public class Restaurant extends NamedEntity {
     public Restaurant() {
     }
 
-    public Restaurant(Integer id, String name, String address, String contacts, List<Dish> menu) {
+    public Restaurant(Integer id, String name, String address, String contacts) {
         super(id, name);
         this.address = address;
         this.contacts = contacts;
-        this.menu = menu;
     }
 
     public String getAddress() {
@@ -61,7 +60,6 @@ public class Restaurant extends NamedEntity {
         return "Restaurant{" +
                 "address='" + address + '\'' +
                 ", contacts='" + contacts + '\'' +
-                ", menu=" + menu +
                 '}';
     }
 }

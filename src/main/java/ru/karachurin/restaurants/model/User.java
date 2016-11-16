@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -41,8 +42,11 @@ public class User extends NamedEntity {
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     @BatchSize(size = 200)
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Role> roles;
+
+    @Column(name = "lastvotedate")
+    private LocalDate lastVoteDate;
 
     public User() {
     }
@@ -94,6 +98,14 @@ public class User extends NamedEntity {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public LocalDate getLastVoteDate() {
+        return lastVoteDate;
+    }
+
+    public void setLastVoteDate(LocalDate lastVoteDate) {
+        this.lastVoteDate = lastVoteDate;
     }
 
     @Override

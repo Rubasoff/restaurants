@@ -12,7 +12,7 @@ public class Vote extends NamedEntity {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "user", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -6,6 +6,7 @@ package ru.karachurin.restaurants.service;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -45,6 +46,12 @@ public class DishServiceTest extends AbstractServiceTest {
     public void delete() throws Exception {
         service.delete(100005);
         assertThat(service.getAll(), is(Arrays.asList(DISH2, DISH3)));
+    }
+
+    @Test
+    public void deleteAll() throws Exception {
+        service.deleteAll();
+        assertThat(service.getAll(), is(empty()));
     }
 
     @Test

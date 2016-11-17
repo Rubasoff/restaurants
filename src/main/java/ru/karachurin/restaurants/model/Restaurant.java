@@ -2,6 +2,7 @@ package ru.karachurin.restaurants.model;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Денис on 15.11.2016.
@@ -16,7 +17,7 @@ public class Restaurant extends NamedEntity {
     @Column (name = "contacts")
     private String contacts;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "restaurant")
     List<Dish> menu;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "restaurant")
@@ -55,9 +56,18 @@ public class Restaurant extends NamedEntity {
         this.votes = votes;
     }
 
+    public List<Dish> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(List<Dish> menu) {
+        this.menu = menu;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
+                "id='" + id + '\'' +
                 "address='" + address + '\'' +
                 ", contacts='" + contacts + '\'' +
                 '}';

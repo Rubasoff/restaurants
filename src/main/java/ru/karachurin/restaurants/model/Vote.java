@@ -7,12 +7,13 @@ import java.time.LocalDate;
  * Created by Денис on 15.11.2016.
  */
 @Entity
-@Table(name = "user_votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date"}, name = "user_votes_unique_user_id_date_idx")})
-public class Vote extends NamedEntity {
+@Table(name = "user_votes", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date"}, name = "USER_VOTES_UNIQUE_USER_ID_DATE_IDX")})
+public class Vote extends BaseEntity {
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -22,8 +23,8 @@ public class Vote extends NamedEntity {
     public Vote() {
     }
 
-    public Vote(Integer id, String name, LocalDate date, User user, Restaurant restaurant) {
-        super(id, name);
+    public Vote(Integer id, LocalDate date, User user, Restaurant restaurant) {
+        super(id);
         this.date = date;
         this.user = user;
         this.restaurant = restaurant;

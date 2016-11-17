@@ -2,6 +2,9 @@ package ru.karachurin.restaurants.testData;
 
 import ru.karachurin.restaurants.model.Restaurant;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static ru.karachurin.restaurants.model.BaseEntity.START_SEQ;
 
 /**
@@ -10,6 +13,15 @@ import static ru.karachurin.restaurants.model.BaseEntity.START_SEQ;
 public class RestaurantTestData {
     public static final int RESTAURANT1_ID = START_SEQ + 4;
 
-    public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT1_ID, "Pushkin", "+7 937 777 777", "Pushkina st. 53");
-    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT1_ID + 1, "Gogol", "+7 937 234 111", "Gogol st. 40");
+    public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT1_ID, "Pushkin", "Pushkina st. 53", "+7 937 777 777");
+    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT1_ID + 4, "Gogol", "Gogol st. 40", "+7 937 234 111");
+    public static final List<Restaurant> RESTAURANTS = Arrays.asList(RESTAURANT1, RESTAURANT2);
+
+    public static Restaurant getCreated(){
+        return new Restaurant(null, "Created", "st.", "111");
+    }
+
+    public static Restaurant getUpdated(){
+        return new Restaurant(RESTAURANT1_ID, "Updated", "Pushkina st. 54", "+7 937 777 778");
+    }
 }

@@ -18,9 +18,15 @@ INSERT INTO user_roles (role, user_id) VALUES
   ('ROLE_ADMIN', 100001);
 
 INSERT INTO restaurants (id, NAME, CONTACTS, ADDRESS)
-VALUES (100004, 'Pushkin', '+7 937 777 777', 'ул. Пушкина 53');
+VALUES (100004, 'Pushkin', '+7 937 777 777', 'ул. Пушкина 53'),
+       (100008, 'Gogol', '+7 937 234 111', 'Gogol st. 40');
 
 INSERT INTO dishes (id, RESTAURANT_ID, NAME, PRICE)
 VALUES (100005, 100004, 'Pasta', 40.50),
        (100006, 100004, 'Pizza', 10.00),
-       (100007, 100004, 'Steak', 70.30);
+       (100007, 100004, 'Steak', 70.30),
+       (100027, 100008, 'Steak', 170.30);
+
+INSERT INTO user_votes (ID, RESTAURANT_ID, DATE, USER_ID)
+VALUES (100050, 100004, '2016-11-16 00:00:00', 100000),
+       (100051, 100004, '2016-11-17 00:00:00', 100000);

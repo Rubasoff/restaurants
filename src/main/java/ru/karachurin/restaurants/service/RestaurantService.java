@@ -13,7 +13,7 @@ import java.util.Collections;
 public interface RestaurantService {
     Restaurant get(int id) throws NotFoundException;
 
-    Restaurant getWithVotesAndMenuOnDate(int id, LocalDate date) throws NotFoundException;
+    Restaurant getWithVotesOnDate(int id, LocalDate date) throws NotFoundException;
 
     void delete(int id) throws NotFoundException;
 
@@ -23,6 +23,6 @@ public interface RestaurantService {
 
     Collection<Restaurant> getAll();
 
-    Collection<Restaurant> getAllWithVotesAndMenusOnDate();
+    Collection<Restaurant> getAllWithVotesOnDate();
 
 }

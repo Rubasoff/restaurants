@@ -44,6 +44,7 @@ public class Dish extends NamedEntity {
     @Override
     public String toString() {
         return "Dish{" +
+                "id='" + id + '\'' +
                 "price=" + price +
                 '}';
     }

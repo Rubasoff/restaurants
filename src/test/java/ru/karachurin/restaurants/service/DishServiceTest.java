@@ -1,11 +1,12 @@
 package ru.karachurin.restaurants.service;
 
-import static org.hamcrest.Matchers.equalTo;
 
-import org.junit.Before;
+
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static ru.karachurin.restaurants.testData.DishTestData.*;
@@ -28,20 +29,14 @@ import java.util.List;
 /**
  * Created by Денис on 15.11.2016.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@Sql(scripts = "/db/populateDB", config = @SqlConfig(encoding = "UTF-8"))
-public class DishServiceTest {
+
+public class DishServiceTest extends AbstractServiceTest {
 
     @Autowired
     DishService service;
 
-    @Before
-    public void init(){
-
-    }
     @Test
-    public void get() throws NotFoundException {
+    public void get() throws Exception {
         Dish resultDish = service.get(100005);
         assertThat(resultDish, equalTo(DISH1));
     }

@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static ru.karachurin.restaurants.testData.DishTestData.MENU;
@@ -41,8 +42,9 @@ public class RestaurantServiceTest extends AbstractServiceTest{
 
     @Test
     public void getWithVotesOnDate() throws Exception {
-        Restaurant resultRestaurant = service.getWithVotesOnDate(100004, LocalDate.now());
+        Restaurant resultRestaurant = service.getWithVotesOnDate(100004, LocalDate.parse("2016-11-17"));
         assertThat(resultRestaurant, equalTo(RESTAURANT1));
+        assertThat(resultRestaurant.getVotes(), hasSize(2));
     }
 
     @Test
@@ -73,7 +75,10 @@ public class RestaurantServiceTest extends AbstractServiceTest{
 
     @Test
     public void getAllWithVotesOnDate() throws Exception {
-
+        List<Restaurant> restaurants = (List<Restaurant>) service.getAllWithVotesOnDate(LocalDate.parse("2016-11-17"));
+        assertThat(Arrays.asList(RESTAURANT1, RESTAURANT2), is(restaurants));
+        assertThat(restaurants.get(0).getVotes(), hasSize(2));
+        assertThat(restaurants.get(1).getVotes(), hasSize(0));
     }
 
 }

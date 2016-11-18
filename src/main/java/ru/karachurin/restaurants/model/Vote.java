@@ -1,5 +1,7 @@
 package ru.karachurin.restaurants.model;
 
+import org.hibernate.annotations.FilterJoinTable;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 

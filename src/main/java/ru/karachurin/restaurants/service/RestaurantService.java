@@ -23,6 +23,6 @@ public interface RestaurantService {
 
     Collection<Restaurant> getAll();
 
-    Collection<Restaurant> getAllWithVotesOnDate();
+    Collection<Restaurant> getAllWithVotesOnDate(LocalDate date);
 
 }

@@ -2,6 +2,7 @@ package ru.karachurin.restaurants;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * Created by Денис on 02.11.2016.

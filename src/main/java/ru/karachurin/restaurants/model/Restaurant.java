@@ -1,5 +1,7 @@
 package ru.karachurin.restaurants.model;
 
+import org.hibernate.annotations.BatchSize;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +23,7 @@ public class Restaurant extends NamedEntity {
     List<Dish> menu;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @BatchSize(size = 100)
     List<Vote> votes;
 
     public Restaurant() {

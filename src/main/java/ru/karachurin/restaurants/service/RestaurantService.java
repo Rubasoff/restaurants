@@ -6,6 +6,7 @@ import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Денис on 15.11.2016.
@@ -21,8 +22,8 @@ public interface RestaurantService {
 
     Restaurant save(Restaurant restaurant);
 
-    Collection<Restaurant> getAll();
+    List<Restaurant> getAll();
 
-    Collection<Restaurant> getAllWithVotesOnDate(LocalDate date);
+    List<Restaurant> getAllWithVotesOnDate(LocalDate date);
 
 }

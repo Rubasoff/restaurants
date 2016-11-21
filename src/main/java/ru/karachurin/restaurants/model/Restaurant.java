@@ -1,16 +1,24 @@
 package ru.karachurin.restaurants.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Денис on 15.11.2016.
  */
-
+@SqlResultSetMapping(
+        name = "RestaurantMapping",
+        classes = @ConstructorResult(
+                targetClass = Restaurant.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Integer.class),
+                        @ColumnResult(name = "name", type = String.class),
+                        @ColumnResult(name = "address", type = String.class),
+                        @ColumnResult(name = "contacts", type = String.class),
+                        @ColumnResult(name = "votesCount", type = Integer.class)
+                        }))
 @Entity
 @Table(name = "restaurants")
 public class Restaurant extends NamedEntity {
@@ -28,7 +36,7 @@ public class Restaurant extends NamedEntity {
     List<Vote> votes;
 
     @Transient
-    private int VotesCount;
+    private Integer votesCount;
 
     public Restaurant() {
     }
@@ -39,12 +47,19 @@ public class Restaurant extends NamedEntity {
         this.contacts = contacts;
     }
 
+    public Restaurant(Integer id, String name, String address, String contacts, Integer votesCount) {
+        super(id, name);
+        this.address = address;
+        this.contacts = contacts;
+        this.votesCount = votesCount;
+    }
+
     public int getVotesCount() {
-        return VotesCount;
+        return votesCount;
     }
 
     public void setVotesCount(int votesCount) {
-        VotesCount = votesCount;
+        this.votesCount = votesCount;
     }
 
     public String getAddress() {

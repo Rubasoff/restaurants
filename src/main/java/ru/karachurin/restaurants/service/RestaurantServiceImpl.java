@@ -60,38 +60,28 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<Restaurant> getAll() {
-        return (List<Restaurant>) restaurantRepository.findAll();
+        List<Restaurant> allRestaurants = (List<Restaurant>) restaurantRepository.findAll();
+        for (Restaurant restaurant : allRestaurants) {
+            restaurant.setVotesCount(restaurant.getVotes().size());
+        }
+        return allRestaurants;
     }
 
     @Override
     public List<Restaurant> getAllWithVotesOnDate(LocalDate date) {
         List<Restaurant> allRestaurants = (List<Restaurant>) restaurantRepository.findAll();
-//        HashSet<Restaurant> restaurants = (HashSet<Restaurant>) restaurantRepository.getAllWithVotesOnDate(date);
+        List<Restaurant> restaurantsWithVotes = restaurantRepository.getAllWithVotesOnDate(date);
 
-        String sql = "SELECT Rest.ID, Rest.NAME, Rest.CONTACTS, Rest.ADDRESS, COUNT(v.id) votesCount from RESTAURANTS as Rest left OUTER JOIN USER_VOTES v on  Rest.ID = v.RESTAURANT_ID and v.DATE=? GROUP BY Rest.ID";
-        Query q = em.createNativeQuery(sql, "RestaurantMapping");
-        q.setParameter(1, date.toString());
-        List<Restaurant> restaurants = (List<Restaurant>) q.getResultList();
-        return restaurants;
-        //If there are null, it means that all restaurants don't have a votes on that date.
-        //Lets get all restaurants
-//        if (restaurants == null) return (List<Restaurant>) restaurantRepository.findAll();
-//        else {
-//            for (Restaurant restaurant : restaurants) {
-//                restaurant.setVotesCount(restaurant.getVotes().size());
-//            }
-//            return restaurants;
-//        }
+        for (Restaurant restaurant : allRestaurants) {
+            if (restaurantsWithVotes.contains(restaurant)){
+                int idx = restaurantsWithVotes.indexOf(restaurant);
+                restaurant.setVotesCount(restaurantsWithVotes.get(idx).getVotes().size());
+            }
+            else {
+                restaurant.setVotesCount(0);
+            }
+        }
+        return allRestaurants;
     }
-
-//    private List<Restaurant>setVotesOnDate(List<Restaurant> allRestaurants,List<Restaurant> restaurantsWithVotes){
-//        for (Restaurant restaurant : allRestaurants) {
-//            if (restaurantsWithVotes.contains(restaurant)){
-//                restaurant.setVotesCount(restaurantsWithVotes.);
-//            }
-//        }
-//    }
-
-
-
 }
+

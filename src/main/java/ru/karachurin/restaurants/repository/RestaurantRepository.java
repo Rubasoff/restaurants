@@ -16,4 +16,8 @@ import java.util.List;
 public interface RestaurantRepository extends CrudRepository<Restaurant, Integer> {
     @Query("SELECT DISTINCT r FROM Restaurant r LEFT JOIN FETCH r.votes v WHERE  v.date=:date")
     List<Restaurant> getAllWithVotesOnDate(@Param("date") LocalDate date);
+
+    @Query("SELECT DISTINCT r FROM Restaurant r LEFT JOIN FETCH r.votes")
+    @Override
+    Iterable<Restaurant> findAll();
 }

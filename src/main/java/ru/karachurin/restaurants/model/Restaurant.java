@@ -10,6 +10,7 @@ import java.util.List;
  */
 @SqlResultSetMapping(
         name = "RestaurantMapping",
+
         classes = @ConstructorResult(
                 targetClass = Restaurant.class,
                 columns = {
@@ -36,7 +37,7 @@ public class Restaurant extends NamedEntity {
     List<Vote> votes;
 
     @Transient
-    private Integer votesCount;
+    private int votesCount;
 
     public Restaurant() {
     }
@@ -45,6 +46,7 @@ public class Restaurant extends NamedEntity {
         super(id, name);
         this.address = address;
         this.contacts = contacts;
+        this.votesCount = 12;
     }
 
     public Restaurant(Integer id, String name, String address, String contacts, Integer votesCount) {

@@ -63,19 +63,16 @@ public class RestaurantServiceImpl implements RestaurantService {
     public Collection<Restaurant> getAllWithVotesOnDate(LocalDate date) {
         Collection<Restaurant> restaurants = restaurantRepository.getAllWithVotesOnDate(date);
         //If there are null, it means that all restaurants don't have a votes on that date.
-        //Lets get all restaurants and make their votes collection is empty to avoid Lazy error
-        if (restaurants == null) return getAllRestaurantsWithEmptyVotesCollection();
-        else return restaurants;
-    }
-
-    private Collection<Restaurant> getAllRestaurantsWithEmptyVotesCollection(){
-        List<Vote> votes = new ArrayList<>();
-        Collection<Restaurant>  restaurants = (Collection<Restaurant>) restaurantRepository.findAll();
+        //Lets get all restaurants
+        if (restaurants == null) return (Collection<Restaurant>) restaurantRepository.findAll();
+        else {
             for (Restaurant restaurant : restaurants) {
-                restaurant.setVotes(votes);
+                restaurant.setVotesCount(restaurant.getVotes().size());
             }
             return restaurants;
+        }
     }
+
 
 
 }

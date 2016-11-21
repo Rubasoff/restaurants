@@ -9,6 +9,7 @@ import ru.karachurin.restaurants.service.RestaurantService;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by Денис on 18.11.2016.
@@ -24,12 +25,20 @@ public class RestaurantRestController {
     @GetMapping("/{id}")
     Restaurant get(@PathVariable int id, @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws NotFoundException {
         if (date==null){
-            Restaurant restaurant =  service.get(id);
-            restaurant.setVotes(null);
-            return restaurant;
+            return service.get(id);
         }
         else {
             return service.getWithVotesOnDate(id, date);
+        }
+    }
+
+    @GetMapping
+    List<Restaurant> getAll(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws NotFoundException {
+        if (date==null){
+            return (List<Restaurant>) service.getAll();
+        }
+        else {
+            return (List<Restaurant>) service.getAllWithVotesOnDate(date);
         }
     }
 

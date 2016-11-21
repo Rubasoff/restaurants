@@ -1,9 +1,13 @@
 package ru.karachurin.restaurants.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.Hibernate;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
+
+import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY;
 
 /**
  * Created by Денис on 02.11.2016.
@@ -11,7 +15,7 @@ import javax.persistence.*;
 @MappedSuperclass
 
 @Access(AccessType.FIELD)
-//@JsonAutoDetect(fieldVisibility = ANY, getterVisibility = NONE, isGetterVisibility = NONE, setterVisibility = NONE)
+//@JsonAutoDetect(fieldVisibility = ANY)
 public class BaseEntity implements Persistable<Integer> {
     public static final int START_SEQ = 100000;
 
@@ -37,6 +41,7 @@ public class BaseEntity implements Persistable<Integer> {
         return id;
     }
 
+    @JsonIgnore
     @Override
     public boolean isNew() {
         return (this.id == null);

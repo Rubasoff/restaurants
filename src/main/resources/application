@@ -1,0 +1,7 @@
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto = none
+spring.jpa.open-in-view=false
+spring.datasource.url=jdbc:hsqldb:file:G:/hsql_databases/restaurants/restaurants
+spring.datasource.username=admin
+spring.datasource.password=1n2t3h4h
+spring.datasource.driver-class-name=org.hsqldb.jdbc.JDBCDriver

@@ -20,6 +20,7 @@ import java.util.List;
 @Service
 @Transactional
 public class RestaurantServiceImpl implements RestaurantService {
+    //TODO Exceptions
     @Autowired
     RestaurantRepository restaurantRepository;
 
@@ -34,7 +35,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public Restaurant getWithVotesOnDate(int id, LocalDate date) throws NotFoundException {
         Restaurant restaurant = restaurantRepository.findOne(id);
-        restaurant.setVotes(voteRepository.getAllByRestaurantIdAndDate(id, date));
+        restaurant.setVotesCount(voteRepository.getAllByRestaurantIdAndDate(id, date).size());
         return restaurant;
     }
 

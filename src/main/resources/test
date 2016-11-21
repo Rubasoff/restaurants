@@ -1,3 +1,7 @@
 spring.jpa.show-sql=true
 spring.jpa.hibernate.ddl-auto=update
 logging.level.org.hibernate=DEBUG
+
+spring.datasource.url=jdbc:hsqldb:mem:RestaurantsTest
+spring.datasource.username=sa
+spring.datasource.password=

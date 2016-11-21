@@ -1,5 +1,6 @@
 package ru.karachurin.restaurants.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.FilterJoinTable;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Vote extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
+    @JsonIgnore
     private Restaurant restaurant;
 
     public Vote() {

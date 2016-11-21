@@ -1,5 +1,6 @@
 package ru.karachurin.restaurants.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
@@ -22,9 +23,12 @@ public class Restaurant extends NamedEntity {
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "restaurant")
     List<Dish> menu;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "restaurant")
-    @BatchSize(size = 100)
     List<Vote> votes;
+
+    @Transient
+    private int VotesCount;
 
     public Restaurant() {
     }
@@ -33,6 +37,14 @@ public class Restaurant extends NamedEntity {
         super(id, name);
         this.address = address;
         this.contacts = contacts;
+    }
+
+    public int getVotesCount() {
+        return VotesCount;
+    }
+
+    public void setVotesCount(int votesCount) {
+        VotesCount = votesCount;
     }
 
     public String getAddress() {

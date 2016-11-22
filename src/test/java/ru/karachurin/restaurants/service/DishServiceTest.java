@@ -57,7 +57,7 @@ public class DishServiceTest extends AbstractServiceTest {
     @Test
     public void update() throws Exception {
         Dish updated = getUpdated();
-        service.update(updated);
+        service.update(updated, updated.getId(), updated.getRestaurant().getId());
         assertThat(updated, equalTo(service.get(DISH1_ID)));
     }
 

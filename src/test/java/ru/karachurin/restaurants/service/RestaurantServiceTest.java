@@ -44,7 +44,7 @@ public class RestaurantServiceTest extends AbstractServiceTest{
     public void getWithVotesOnDate() throws Exception {
         Restaurant resultRestaurant = service.getWithVotesOnDate(100004, LocalDate.parse("2016-11-17"));
         assertThat(resultRestaurant, equalTo(RESTAURANT1));
-        assertThat(resultRestaurant.getVotes(), hasSize(2));
+        assertEquals(resultRestaurant.getVotesCount(), 2);
     }
 
     @Test

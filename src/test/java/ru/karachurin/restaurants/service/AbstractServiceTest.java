@@ -14,6 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(locations="classpath:test")
-@Sql(scripts = "/db/populateDB", config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = {"/db/InitDB_HSQL","/db/populateDB"}, config = @SqlConfig(encoding = "UTF-8"))
 abstract public class AbstractServiceTest {
 }

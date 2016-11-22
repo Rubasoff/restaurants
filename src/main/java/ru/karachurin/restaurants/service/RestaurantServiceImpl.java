@@ -22,8 +22,6 @@ import java.util.List;
 public class RestaurantServiceImpl implements RestaurantService {
     //TODO Exceptions
     //TODO refactor to List
-    @PersistenceContext
-    private EntityManager em;
 
     @Autowired
     RestaurantRepository restaurantRepository;

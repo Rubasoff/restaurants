@@ -33,7 +33,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant get(int id) throws NotFoundException {
-        return restaurantRepository.findOne(id);
+        Restaurant restaurant = restaurantRepository.findOne(id);
+        restaurant.setVotesCount(restaurant.getVotes().size());
+        return restaurant;
     }
 
     @Override
@@ -69,7 +71,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public List<Restaurant> getAllWithVotesOnDate(LocalDate date) {
-        //Due to the fact that  restaurants may be without any votes, they don't get in query result
+        //Due to the fact that some restaurants may be without any votes, they don't get in query result
         // , so we need get all restaurants first, then get restaurants that have a votes on current date
         // , and set votesCount to each restaurant
         List<Restaurant> allRestaurants = (List<Restaurant>) restaurantRepository.findAll();

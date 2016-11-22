@@ -10,6 +10,7 @@ import ru.karachurin.restaurants.repository.RestaurantRepository;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Денис on 16.11.2016.
@@ -40,24 +41,32 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish update(Dish dish) {
+    public Dish update(Dish dish, int dishId, int restaurantId) {
+        dish.setId(dishId);
+        setRestaurant(dish, restaurantId);
         return dishRepository.save(dish);
     }
 
     @Override
     public Dish save(Dish dish, int restaurantId) {
-        Restaurant restaurant = restaurantRepository.findOne(restaurantId);
-        dish.setRestaurant(restaurant);
+        dish.setId(null);
+        setRestaurant(dish, restaurantId);
         return dishRepository.save(dish);
     }
 
     @Override
-    public Collection<Dish> getAll() {
-        return (Collection<Dish>) dishRepository.findAll();
+    public List<Dish> getAll() {
+        return (List<Dish>) dishRepository.findAll();
     }
 
     @Override
-    public Collection<Dish> getAllFromRestaurant(int restaurantId) {
+    public List<Dish> getAllFromRestaurant(int restaurantId) {
         return dishRepository.getAllFromRestaurant(restaurantId);
+    }
+
+    private Dish setRestaurant(Dish dish, int restaurantId){
+        Restaurant restaurant = restaurantRepository.findOne(restaurantId);
+        dish.setRestaurant(restaurant);
+        return dish;
     }
 }

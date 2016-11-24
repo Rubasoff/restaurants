@@ -5,10 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.karachurin.restaurants.model.User;
+import ru.karachurin.restaurants.model.Vote;
 import ru.karachurin.restaurants.repository.UserRepository;
+import ru.karachurin.restaurants.repository.VoteRepository;
 import ru.karachurin.restaurants.util.exceptions.ExceptionUtil;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -19,6 +22,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    VoteRepository voteRepository;
 
     @Override
     public User save(User user) {
@@ -60,4 +66,13 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(enabled);
         userRepository.save(user);
     }
+
+    @Override
+    public void doVote(User user, int restaurantId, LocalDateTime date) {
+        if (canVote(user, date)){
+            voteRepository.save(new Vote())
+        }
+    }
+
+
 }

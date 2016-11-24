@@ -3,6 +3,8 @@ package ru.karachurin.restaurants.service;
 import ru.karachurin.restaurants.model.User;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -22,4 +24,6 @@ public interface UserService {
     List<User> getAll();
 
     void enable(int id, boolean enable);
+
+    void doVote(User user, int restaurantId, LocalDateTime date);
 }

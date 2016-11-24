@@ -10,6 +10,7 @@ import ru.karachurin.restaurants.model.Dish;
 import ru.karachurin.restaurants.model.Restaurant;
 import ru.karachurin.restaurants.service.DishService;
 import ru.karachurin.restaurants.service.RestaurantService;
+import ru.karachurin.restaurants.service.UserService;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
 import java.net.URI;
@@ -29,6 +30,9 @@ public class RestaurantRestController {
 
     @Autowired
     DishService dishService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/{id}")
     Restaurant get(@PathVariable int id, @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws NotFoundException {

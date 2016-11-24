@@ -1,6 +1,8 @@
 package ru.karachurin.restaurants.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.karachurin.restaurants.model.User;
 import ru.karachurin.restaurants.repository.UserRepository;
@@ -12,6 +14,8 @@ import java.util.List;
 /**
  * Created by Денис on 24.11.2016.
  */
+@Service
+@Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;

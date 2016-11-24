@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.Set;
 
 /**
@@ -46,18 +47,25 @@ public class User extends NamedEntity {
     private Set<Role> roles;
 
     @Column(name = "lastvotedate")
-    private LocalDate lastVoteDate;
+    private LocalDate lastVoteDate = LocalDate.now().minusDays(1);
 
     public User() {
     }
 
-    public User(Integer id, String name, String email, String password, boolean enabled, Date registered, Set<Role> roles) {
+    public User(Integer id, String name, String email, String password, Role role, Role...roles) {
+        this(id, name, email, password, true, EnumSet.of(role, roles));
+    }
+
+    public User(Integer id, String name, String email, String password, boolean enabled, Set<Role> roles) {
         super(id, name);
         this.email = email;
         this.password = password;
         this.enabled = enabled;
-        this.registered = registered;
         this.roles = roles;
+    }
+
+    public User(User u) {
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRoles());
     }
 
     public String getEmail() {
@@ -113,8 +121,8 @@ public class User extends NamedEntity {
         return "User{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", name=" + name +
                 ", enabled=" + enabled +
-                ", registered=" + registered +
                 ", roles=" + roles +
                 '}';
     }

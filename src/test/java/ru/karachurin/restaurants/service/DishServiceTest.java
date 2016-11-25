@@ -38,14 +38,14 @@ public class DishServiceTest extends AbstractServiceTest {
 
     @Test
     public void get() throws Exception {
-        Dish resultDish = service.get(100005);
+        Dish resultDish = service.get(DISH1_ID);
         assertThat(resultDish, equalTo(DISH1));
     }
 
     @Test
     public void delete() throws Exception {
-        service.delete(100005);
-        assertThat(service.getAll(), is(Arrays.asList(DISH2, DISH3)));
+        service.delete(DISH1_ID);
+        assertThat(service.getAll(), is(Arrays.asList(DISH2, DISH3, DISH4)));
     }
 
     @Test
@@ -64,8 +64,8 @@ public class DishServiceTest extends AbstractServiceTest {
     @Test
     public void save() throws Exception {
         Dish created = getCreated();
-        service.save(created, 100004);
-        assertThat(Arrays.asList(created, DISH1, DISH2, DISH3), is(service.getAll()));
+        service.save(created, RESTAURANT1_ID);
+        assertThat(Arrays.asList(DISH1, DISH2, DISH3, DISH4, created), is(service.getAll()));
     }
 
     @Test

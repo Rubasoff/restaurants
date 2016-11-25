@@ -26,13 +26,13 @@ public class RestaurantServiceTest extends AbstractServiceTest{
 
     @Test
     public void get() throws Exception {
-        Restaurant resultRestaurant = service.get(100008);
-        assertThat(resultRestaurant, equalTo(RESTAURANT2));
+        Restaurant resultRestaurant = service.get(RESTAURANT1_ID);
+        assertThat(resultRestaurant, equalTo(RESTAURANT1));
     }
 
     @Test
     public void getWithMenu() throws Exception {
-        Restaurant resultRestaurant = service.get(100004);
+        Restaurant resultRestaurant = service.get(RESTAURANT1_ID);
         assertThat(resultRestaurant, equalTo(RESTAURANT1));
         List<Dish> menu = resultRestaurant.getMenu();
         assertThat(menu.get(0), is(MENU.get(0)));
@@ -42,14 +42,14 @@ public class RestaurantServiceTest extends AbstractServiceTest{
 
     @Test
     public void getWithVotesOnDate() throws Exception {
-        Restaurant resultRestaurant = service.getWithVotesOnDate(100004, LocalDate.parse("2016-11-17"));
+        Restaurant resultRestaurant = service.getWithVotesOnDate(RESTAURANT1_ID, LocalDate.parse("2016-11-17"));
         assertThat(resultRestaurant, equalTo(RESTAURANT1));
         assertEquals(resultRestaurant.getVotesCount(), 2);
     }
 
     @Test
     public void delete() throws Exception {
-        service.delete(100004);
+        service.delete(RESTAURANT1_ID);
         assertThat(service.getAll(), is(Arrays.asList(RESTAURANT2)));
     }
 
@@ -77,7 +77,7 @@ public class RestaurantServiceTest extends AbstractServiceTest{
     public void getAllWithVotesOnDate() throws Exception {
         List<Restaurant> restaurants = (List<Restaurant>) service.getAllWithVotesOnDate(LocalDate.parse("2016-11-17"));
         assertThat(Arrays.asList(RESTAURANT1, RESTAURANT2), is(restaurants));
-        assertThat(restaurants.get(0).getVotes(), hasSize(2));
+        assertThat(restaurants.get(0).getVotes(), hasSize(3));
         assertThat(restaurants.get(1).getVotes(), hasSize(0));
     }
 

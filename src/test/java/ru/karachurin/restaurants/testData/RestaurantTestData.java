@@ -14,7 +14,7 @@ public class RestaurantTestData {
     public static final int RESTAURANT1_ID = 100100;
 
     public static final Restaurant RESTAURANT1 = new Restaurant(RESTAURANT1_ID, "Pushkin", "Pushkina st. 53", "+7 937 777 777");
-    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT1_ID + 4, "Gogol", "Gogol st. 40", "+7 937 234 111");
+    public static final Restaurant RESTAURANT2 = new Restaurant(RESTAURANT1_ID + 1, "Gogol", "Gogol st. 40", "+7 937 234 111");
     public static final List<Restaurant> RESTAURANTS = Arrays.asList(RESTAURANT1, RESTAURANT2);
 
     public static Restaurant getCreated(){

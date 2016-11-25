@@ -100,7 +100,7 @@ public class RestaurantRestController {
     }
 
     @PostMapping(value = "/{id}/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void vote(UserVoteTO voteTO){
+    public void vote(@RequestBody UserVoteTO voteTO){
         userService.doVote(voteTO.getUserId(), voteTO.getRestaurantId(), voteTO.getDate());
     }
 

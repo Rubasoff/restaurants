@@ -11,6 +11,7 @@ import ru.karachurin.restaurants.model.Restaurant;
 import ru.karachurin.restaurants.service.DishService;
 import ru.karachurin.restaurants.service.RestaurantService;
 import ru.karachurin.restaurants.service.UserService;
+import ru.karachurin.restaurants.to.UserVoteTO;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
 import java.net.URI;
@@ -96,6 +97,11 @@ public class RestaurantRestController {
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(created);
+    }
+
+    @PostMapping(value = "/{id}/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void vote(UserVoteTO voteTO){
+        userService.doVote(voteTO.getUserId(), voteTO.getRestaurantId(), voteTO.getDate());
     }
 
 }

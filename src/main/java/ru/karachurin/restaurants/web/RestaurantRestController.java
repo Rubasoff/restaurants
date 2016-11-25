@@ -99,8 +99,8 @@ public class RestaurantRestController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @PostMapping(value = "/{id}/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void vote(@PathVariable("id") int restaurantId, @RequestBody UserVoteTO voteTO){
+    @PostMapping(value = "/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void vote(@RequestBody UserVoteTO voteTO){
         userService.doVote(voteTO.getUserId(), voteTO.getRestaurantId(), voteTO.getDate());
     }
 

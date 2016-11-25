@@ -72,8 +72,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         //Due to the fact that some restaurants may be without any votes, they don't get in query result
         // , so we need get all restaurants first, then get restaurants that have a votes on current date
         // , and set votesCount to each restaurant
-        List<Restaurant> allRestaurants = (List<Restaurant>) restaurantRepository.findAll();
         List<Restaurant> restaurantsWithVotes = restaurantRepository.getAllWithVotesOnDate(date);
+        List<Restaurant> allRestaurants = (List<Restaurant>) restaurantRepository.findAll();
 
         for (Restaurant restaurant : allRestaurants) {
             if (restaurantsWithVotes.contains(restaurant)){

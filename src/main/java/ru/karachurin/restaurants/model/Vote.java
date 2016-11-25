@@ -5,6 +5,7 @@ import org.hibernate.annotations.FilterJoinTable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by Денис on 15.11.2016.

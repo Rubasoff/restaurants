@@ -47,7 +47,7 @@ public class User extends NamedEntity {
     private Set<Role> roles;
 
     @Column(name = "lastvotedate")
-    private LocalDate lastVoteDate = LocalDate.now().minusDays(1);
+    private LocalDate lastVoteDate;
 
     public User() {
     }

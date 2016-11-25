@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import ru.karachurin.restaurants.model.Role;
 import ru.karachurin.restaurants.model.User;
+import ru.karachurin.restaurants.model.Vote;
+import ru.karachurin.restaurants.repository.VoteRepository;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,6 +17,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+import static ru.karachurin.restaurants.testData.RestaurantTestData.RESTAURANT1_ID;
 import static ru.karachurin.restaurants.testData.UserTestData.*;
 
 /**
@@ -22,6 +26,9 @@ import static ru.karachurin.restaurants.testData.UserTestData.*;
 public class UserServiceTest extends AbstractServiceTest{
     @Autowired
     UserService service;
+
+    @Autowired
+    VoteRepository voteRepository;
 
     @Test
     public void save() throws Exception {
@@ -85,5 +92,15 @@ public class UserServiceTest extends AbstractServiceTest{
     @Test(expected = DataAccessException.class)
     public void testDuplicateMailSave() throws Exception {
         service.save(new User(null, "Duplicate", "user@yandex.ru", "newPass", Role.ROLE_USER));
+    }
+
+    @Test
+    public void testVote(){
+        LocalDateTime dateTime = LocalDateTime.of(2016,11,20,12,00);
+        service.doVote(USER_ID, RESTAURANT1_ID, dateTime);
+        Vote vote = voteRepository.getByUserIdAndDate(USER_ID, dateTime.toLocalDate());
+        User user = service.get(USER_ID);
+
+
     }
 }

@@ -1,5 +1,6 @@
 package ru.karachurin.restaurants.service;
 
+import ru.karachurin.restaurants.model.Restaurant;
 import ru.karachurin.restaurants.model.User;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
@@ -25,5 +26,5 @@ public interface UserService {
 
     void enable(int id, boolean enable);
 
-    void doVote(User user, int restaurantId, LocalDateTime date);
+    void doVote(int userId, int restaurantId, LocalDateTime date);
 }

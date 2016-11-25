@@ -12,14 +12,11 @@ import ru.karachurin.restaurants.repository.UserRepository;
 import ru.karachurin.restaurants.repository.VoteRepository;
 import ru.karachurin.restaurants.util.exceptions.ExceptionUtil;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
-import ru.karachurin.restaurants.util.exceptions.SomeDayVoteException;
+import ru.karachurin.restaurants.util.exceptions.SameDayVoteException;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Created by Денис on 24.11.2016.
@@ -83,12 +80,10 @@ public class UserServiceImpl implements UserService {
         Restaurant restaurant = restaurantRepository.findOne(restaurantId);
 
         if (canVote(user, date)){
-            user.setLastVoteDate(date.toLocalDate());
-            save(user);
             voteRepository.save(new Vote(null, date.toLocalDate(), user, restaurant));
         }
         else {
-            throw new SomeDayVoteException("User with id: "+user.getId()+" already voted today");
+            throw new SameDayVoteException("User with id: "+user.getId()+" already voted today");
         }
     }
 
@@ -98,7 +93,7 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         else if (voteDate.toLocalTime().isBefore(LocalTime.of(11,0))){
-            voteRepository.deleteFromUserOnDate(user.getId(), voteDate);
+            voteRepository.deleteFromUserOnDate(user.getId(), voteDate.toLocalDate());
             return true;
         }
         else return false;

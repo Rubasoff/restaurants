@@ -46,9 +46,6 @@ public class User extends NamedEntity {
     //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Role> roles;
 
-    @Column(name = "lastvotedate")
-    private LocalDate lastVoteDate;
-
     public User() {
     }
 
@@ -108,13 +105,6 @@ public class User extends NamedEntity {
         this.roles = roles;
     }
 
-    public LocalDate getLastVoteDate() {
-        return lastVoteDate;
-    }
-
-    public void setLastVoteDate(LocalDate lastVoteDate) {
-        this.lastVoteDate = lastVoteDate;
-    }
 
     @Override
     public String toString() {

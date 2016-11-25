@@ -15,8 +15,7 @@ CREATE TABLE users (
   email            VARCHAR(255) NOT NULL,
   password         VARCHAR(255) NOT NULL,
   registered       TIMESTAMP DEFAULT now(),
-  enabled          BOOLEAN   DEFAULT TRUE,
-  lastVoteDate     DATE
+  enabled          BOOLEAN   DEFAULT TRUE
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON USERS (email);
 

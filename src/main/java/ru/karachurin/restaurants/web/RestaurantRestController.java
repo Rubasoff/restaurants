@@ -89,7 +89,7 @@ public class RestaurantRestController {
         dishService.update(dish, dishId, restaurantId);
     }
     @PostMapping(value = "/{id}/menu", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dish> createDishWithLocation(@RequestBody Dish dish, @RequestParam("id") int restaurantId) {
+    public ResponseEntity<Dish> createDishWithLocation(@RequestBody Dish dish, @PathVariable("id") int restaurantId) {
         Dish created = dishService.save(dish, restaurantId);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()

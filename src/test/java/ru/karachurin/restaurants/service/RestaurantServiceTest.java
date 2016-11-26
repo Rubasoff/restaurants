@@ -77,8 +77,8 @@ public class RestaurantServiceTest extends AbstractServiceTest{
     public void getAllWithVotesOnDate() throws Exception {
         List<Restaurant> restaurants = (List<Restaurant>) service.getAllWithVotesOnDate(LocalDate.parse("2016-11-17"));
         assertThat(Arrays.asList(RESTAURANT1, RESTAURANT2), is(restaurants));
-        assertThat(restaurants.get(0).getVotes(), hasSize(3));
-        assertThat(restaurants.get(1).getVotes(), hasSize(0));
+        assertThat(restaurants.get(0).getVotes(), hasSize(2));
+        assertThat(restaurants.get(1).getVotes(), hasSize(1));
     }
 
 }

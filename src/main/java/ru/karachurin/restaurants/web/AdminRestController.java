@@ -24,19 +24,19 @@ public class AdminRestController {
 
     UserService userService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping()
     public List<User> getAll() {
         log.info("getAll");
         return userService.getAll();
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}")
     public User get(@PathVariable("id") int id) {
         log.info("get " + id);
         return userService.get(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createWithLocation(@RequestBody User user) {
         User created = userService.save(user);
         log.info("create " + created);
@@ -59,7 +59,7 @@ public class AdminRestController {
         userService.save(user);
     }
 
-    @GetMapping(value = "/by", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/by")
     public User getByUsername(@RequestParam("username") String username) {
         log.info("username " + username);
         return userService.getByUsername(username);

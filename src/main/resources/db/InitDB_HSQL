@@ -16,7 +16,7 @@ CREATE TABLE users (
   registered       TIMESTAMP DEFAULT now(),
   enabled          BOOLEAN   DEFAULT TRUE
 );
-CREATE UNIQUE INDEX users_unique_email_idx ON USERS (email);
+CREATE UNIQUE INDEX users_unique_name_idx ON USERS (name);
 
 CREATE TABLE user_roles
 (

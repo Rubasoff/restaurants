@@ -77,6 +77,7 @@ public class RestaurantRestControllerTest {
                 .andDo(print());
     }
 
+    @WithMockUser(username="Admin",roles={"ADMIN"})
     @Test
     public void testUpdate() throws Exception {
         Restaurant updated = getUpdated();
@@ -85,13 +86,13 @@ public class RestaurantRestControllerTest {
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isOk());
     }
-
+    @WithMockUser(username="Admin",roles={"ADMIN"})
     @Test
     public void testDelete() throws Exception {
         mockMvc.perform(delete(REST_URL + RESTAURANT1_ID).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
-
+    @WithMockUser(username="Admin",roles={"ADMIN"})
     @Test
     public void testCreateWithLocation() throws Exception {
         Restaurant created = getCreated();
@@ -113,13 +114,13 @@ public class RestaurantRestControllerTest {
         mockMvc.perform(get(REST_URL + RESTAURANT1_ID+"/menu/"+DISH1_ID))
                 .andExpect(status().isOk());
     }
-
+    @WithMockUser(username="Admin",roles={"ADMIN"})
     @Test
     public void testDeleteDish() throws Exception {
         mockMvc.perform(delete(REST_URL + RESTAURANT1_ID+"/menu/"+DISH1_ID).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
-
+    @WithMockUser(username="Admin",roles={"ADMIN"})
     @Test
     public void testUpdateDish() throws Exception {
         Dish updated = DishTestData.getUpdated();
@@ -128,7 +129,7 @@ public class RestaurantRestControllerTest {
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isOk());
     }
-
+    @WithMockUser(username="Admin",roles={"ADMIN"})
     @Test
     public void testCreateDishWithLocation() throws Exception {
         Dish created = DishTestData.getCreated();

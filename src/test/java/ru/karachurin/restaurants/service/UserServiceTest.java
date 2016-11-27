@@ -3,7 +3,6 @@ package ru.karachurin.restaurants.service;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import ru.karachurin.restaurants.model.Role;
 import ru.karachurin.restaurants.model.User;
 import ru.karachurin.restaurants.model.Vote;
 import ru.karachurin.restaurants.repository.VoteRepository;
@@ -34,7 +33,7 @@ public class UserServiceTest extends AbstractServiceTest{
 
     @Test
     public void save() throws Exception {
-        User newUser = new User(null, "New", "new@gmail.com", "newPass", false, Collections.singleton(Role.ROLE_USER));
+        User newUser = new User(null, "New", "new@gmail.com", "newPass", false);
         User created = service.save(newUser);
         newUser.setId(created.getId());
         assertThat(service.getAll(), is(Arrays.asList(USER, ADMIN, created)));
@@ -72,7 +71,6 @@ public class UserServiceTest extends AbstractServiceTest{
     public void update() throws Exception {
         User updated = new User(USER);
         updated.setName("UpdatedName");
-        updated.setRoles(Collections.singleton(Role.ROLE_ADMIN));
         service.update(updated);
         assertEquals(updated, service.get(USER_ID));
     }
@@ -93,7 +91,7 @@ public class UserServiceTest extends AbstractServiceTest{
 
     @Test(expected = DataAccessException.class)
     public void testDuplicateMailSave() throws Exception {
-        service.save(new User(null, "Duplicate", "user@yandex.ru", "newPass", Role.ROLE_USER));
+        service.save(new User(null, "Duplicate", "user@yandex.ru", "newPass"));
     }
 
     @Test

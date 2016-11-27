@@ -38,31 +38,22 @@ public class User extends NamedEntity {
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
 
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "role")
-    @ElementCollection(fetch = FetchType.EAGER)
-    @BatchSize(size = 200)
-    //@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Role> roles;
-
     public User() {
     }
 
-    public User(Integer id, String name, String email, String password, Role role, Role...roles) {
-        this(id, name, email, password, true, EnumSet.of(role, roles));
+    public User(Integer id, String name, String email, String password) {
+        this(id, name, email, password, true);
     }
 
-    public User(Integer id, String name, String email, String password, boolean enabled, Set<Role> roles) {
+    public User(Integer id, String name, String email, String password, boolean enabled) {
         super(id, name);
         this.email = email;
         this.password = password;
         this.enabled = enabled;
-        this.roles = roles;
     }
 
     public User(User u) {
-        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRoles());
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled());
     }
 
     public String getEmail() {
@@ -97,14 +88,6 @@ public class User extends NamedEntity {
         this.registered = registered;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
 
     @Override
     public String toString() {
@@ -113,7 +96,6 @@ public class User extends NamedEntity {
                 ", password='" + password + '\'' +
                 ", name=" + name +
                 ", enabled=" + enabled +
-                ", roles=" + roles +
                 '}';
     }
 }

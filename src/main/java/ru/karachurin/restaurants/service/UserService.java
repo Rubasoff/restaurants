@@ -18,7 +18,7 @@ public interface UserService {
 
     User get(int id) throws NotFoundException;
 
-    User getByEmail(String email) throws NotFoundException;
+    User getByUsername(String username) throws NotFoundException;
 
     void update(User user);
 

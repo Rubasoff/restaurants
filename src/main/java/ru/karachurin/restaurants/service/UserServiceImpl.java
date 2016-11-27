@@ -50,9 +50,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByEmail(String email) throws NotFoundException {
-        Assert.notNull(email, "email must not be null");
-        return ExceptionUtil.checkNotFound(userRepository.getByEmail(email), "email=" + email);
+    public User getByUsername(String username) throws NotFoundException {
+        Assert.notNull(username, "Username must not be null");
+        return ExceptionUtil.checkNotFound(userRepository.findByName(username), "username=" + username);
     }
 
     @Override

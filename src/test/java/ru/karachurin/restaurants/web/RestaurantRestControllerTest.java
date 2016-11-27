@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -18,6 +19,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ru.karachurin.restaurants.model.Dish;
 import ru.karachurin.restaurants.model.Restaurant;
+import ru.karachurin.restaurants.repository.UserRepository;
 import ru.karachurin.restaurants.service.DishService;
 import ru.karachurin.restaurants.service.RestaurantService;
 import ru.karachurin.restaurants.service.UserService;
@@ -44,6 +46,7 @@ import static ru.karachurin.restaurants.testData.RestaurantTestData.*;
  */
 @RunWith(SpringRunner.class)
 @WebMvcTest(RestaurantRestController.class)
+@WithMockUser(username="User",roles={"USER"})
 public class RestaurantRestControllerTest {
 
     private static final String REST_URL = RestaurantRestController.REST_URL + '/';
@@ -54,6 +57,9 @@ public class RestaurantRestControllerTest {
     DishService dishService;
     @MockBean
     UserService userService;
+    @MockBean
+    UserRepository userRepository;
+
     @Autowired
     MockMvc mockMvc;
 

@@ -63,8 +63,8 @@ public class UserServiceTest extends AbstractServiceTest{
     }
 
     @Test
-    public void getByEmail() throws Exception {
-        User user = service.getByEmail("admin@gmail.com");
+    public void getByUsername() throws Exception {
+        User user = service.getByUsername("Admin");
         assertEquals(user, ADMIN);
     }
 

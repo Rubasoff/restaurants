@@ -71,7 +71,6 @@ public class RestaurantRestController {
 
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
-
     @GetMapping("/{id}/menu")
     List<Dish> getMenu(@PathVariable int id){
         return dishService.getAllFromRestaurant(id);
@@ -98,7 +97,6 @@ public class RestaurantRestController {
 
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
-
     @PostMapping(value = "/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void vote(@RequestBody UserVoteTO voteTO){
         userService.doVote(voteTO.getUserId(), voteTO.getRestaurantId(), voteTO.getDate());

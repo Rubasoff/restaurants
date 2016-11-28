@@ -41,6 +41,7 @@ public class RestaurantRestController {
 
     @GetMapping("/{id}")
     Restaurant get(@PathVariable int id, @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws NotFoundException {
+        log.info("get " + id);
         if (date==null){
             return restaurantService.get(id);
         }
@@ -50,6 +51,7 @@ public class RestaurantRestController {
     }
     @GetMapping
     List<Restaurant> getAll(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws NotFoundException {
+        log.info("getAll");
         if (date==null){
             return (List<Restaurant>) restaurantService.getAll();
         }
@@ -59,16 +61,18 @@ public class RestaurantRestController {
     }
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@RequestBody Restaurant restaurant, @PathVariable("id") int id) throws NotFoundException {
+        log.info("update " + id);
         restaurantService.update(restaurant);
     }
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") int id) throws NotFoundException {
+        log.info("delete " + id);
         restaurantService.delete(id);
     }
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
         Restaurant created = restaurantService.save(restaurant);
-
+        log.info("create " + created);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();
@@ -77,24 +81,28 @@ public class RestaurantRestController {
     }
     @GetMapping("/{id}/menu")
     List<Dish> getMenu(@PathVariable int id){
+        log.info("getAll menu");
         return dishService.getAllFromRestaurant(id);
     }
     @GetMapping("/{id}/menu/{dishId}")
     Dish getDish(@PathVariable("id") int restaurantId, @PathVariable int dishId) throws NotFoundException {
+        log.info("get dish "+dishId);
         return dishService.get(dishId);
     }
     @DeleteMapping("/{id}/menu/{dishId}")
     public void deleteDish(@PathVariable("id") int restaurantId, @PathVariable int dishId) throws NotFoundException {
+        log.info("delete dish "+dishId);
         restaurantService.delete(dishId);
     }
     @PutMapping(value = "/{id}/menu/{dishId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateDish(@RequestBody Dish dish, @PathVariable("id") int restaurantId, @PathVariable("id") int dishId) throws NotFoundException {
+        log.info("update dish "+dish);
         dishService.update(dish, dishId, restaurantId);
     }
     @PostMapping(value = "/{id}/menu", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dish> createDishWithLocation(@RequestBody Dish dish, @PathVariable("id") int restaurantId) {
         Dish created = dishService.save(dish, restaurantId);
-
+        log.info("create dish "+created);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(created.getId()).toUri();
@@ -103,6 +111,7 @@ public class RestaurantRestController {
     }
     @PostMapping(value = "/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void vote(@RequestBody UserVoteTO voteTO){
+        log.info("vote "+voteTO);
         userService.doVote(voteTO.getUserId(), voteTO.getRestaurantId(), voteTO.getDate());
     }
 

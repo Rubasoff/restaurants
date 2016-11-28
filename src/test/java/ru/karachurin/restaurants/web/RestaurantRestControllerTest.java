@@ -44,24 +44,10 @@ import static ru.karachurin.restaurants.testData.RestaurantTestData.*;
 /**
  * Created by Денис on 25.11.2016.
  */
-@RunWith(SpringRunner.class)
 @WebMvcTest(RestaurantRestController.class)
-@WithMockUser(username="User",roles={"USER"})
-public class RestaurantRestControllerTest {
+public class RestaurantRestControllerTest extends AbstractRestControllerTest{
 
     private static final String REST_URL = RestaurantRestController.REST_URL + '/';
-
-    @MockBean
-    RestaurantService restaurantService;
-    @MockBean
-    DishService dishService;
-    @MockBean
-    UserService userService;
-    @MockBean
-    UserRepository userRepository;
-
-    @Autowired
-    MockMvc mockMvc;
 
     @Test
     public void testGet() throws Exception {

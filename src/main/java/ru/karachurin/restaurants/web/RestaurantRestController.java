@@ -92,7 +92,7 @@ public class RestaurantRestController {
     @DeleteMapping("/{id}/menu/{dishId}")
     public void deleteDish(@PathVariable("id") int restaurantId, @PathVariable int dishId) throws NotFoundException {
         log.info("delete dish "+dishId);
-        restaurantService.delete(dishId);
+        dishService.delete(dishId);
     }
     @PutMapping(value = "/{id}/menu/{dishId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateDish(@RequestBody Dish dish, @PathVariable("id") int restaurantId, @PathVariable("id") int dishId) throws NotFoundException {
@@ -108,11 +108,6 @@ public class RestaurantRestController {
                 .buildAndExpand(created.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(created);
-    }
-    @PostMapping(value = "/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void vote(@RequestBody UserVoteTO voteTO){
-        log.info("vote "+voteTO);
-        userService.doVote(voteTO.getUserId(), voteTO.getRestaurantId(), voteTO.getDate());
     }
 
 }

@@ -126,11 +126,4 @@ public class RestaurantRestControllerTest extends AbstractRestControllerTest{
                 .andExpect(status().isCreated());
     }
 
-    @Test
-    public void testVote() throws Exception {
-        mockMvc.perform(post(REST_URL + "/vote").contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(new UserVoteTO(LocalDateTime.now(), 100000, 100100))))
-                .andExpect(status().isOk());
-    }
-
 }

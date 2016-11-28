@@ -16,9 +16,18 @@ The number of votes is displayed as a numeric field in JSON format. If the reque
 the response will contain the count of votes from the whole period or only for the date parameter <br />
 
 # Rest API:
+
+# /rest/v1/profile/vote
+POST(consume JSON) - make vote for restaurant.<br />
+Consumed JSON example:<br />
+{<br />
+	"date": "2016-11-27T11:50:00",<br />
+	"restaurantId": 100100<br />
+}<br />
+
 # /rest/v1/restaurants 
 GET - gets all restaurants with menus and votes count for all time<br />
-Example produces JSON:<br />
+Produced JSON example:<br />
  [<br />
        {<br />
        "id": 100100,<br />
@@ -58,14 +67,14 @@ Example produces JSON:<br />
     }<br />
  ]<br />
 
-POST (consume json) - create a new restaurant and return it (Only ADMIN role)<br />
-Example consumed JSON:<br />
+POST (consume JSON, produce JSON) - create a new restaurant and return it (Only ADMIN role)<br />
+Consumed JSON example:<br />
 {<br />
       "name": "New",<br />
       "address": "New  st. 10",<br />
       "contacts": "+7 937 234 111"<br />
  }<br />
- Example produces JSON:<br />
+Produced JSON example:<br />
  {<br />
     "id": 100102,<br />
     "name": "New",<br />
@@ -81,6 +90,7 @@ PUT (consume json) - update a restaurant with id (Only ADMIN role)<br />
 
 # /rest/v1/restaurants/{id}/menu<br />
 GET - gets menu from restaurant with id<br />
+Produced JSON example:<br />
 [<br />
    {<br />
       "id": 100002,<br />
@@ -99,12 +109,17 @@ GET - gets menu from restaurant with id<br />
    }<br />
 ]<br />
 
-POST (consume json) - add a new dish to restaurant menu (Only ADMIN role)<br />
-Example consumed JSON:<br />
+POST (consume JSON, produce JSON) - add a new dish to restaurant menu (Only ADMIN role)<br />
+Consumed JSON example:<br />
 {<br />
       "name": "Soup",<br />
-      "price": 10.5<br />
+      "price": 20.7<br />
  }<br />
-
+Produced JSON example:<br />
+{
+   "id": 100105,
+   "name": "Soup",
+   "price": 20.7
+}
 # /rest/v1/restaurants/{id}/menu/{dishId}<br />
 GET - get dish<br />

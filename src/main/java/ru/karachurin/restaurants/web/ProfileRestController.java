@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import ru.karachurin.restaurants.model.User;
 import ru.karachurin.restaurants.service.UserService;
+import ru.karachurin.restaurants.to.UserVoteTO;
 
 /**
  * Created by Денис on 27.11.2016.
@@ -41,6 +42,12 @@ public class ProfileRestController {
         user.setId(getCurrentUserId());
         log.info("update " + user);
         userService.update(user);
+    }
+
+    @PostMapping(value = "/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void vote(@RequestBody UserVoteTO voteTO){
+        log.info("vote "+voteTO);
+        userService.doVote(getCurrentUserId(), voteTO.getRestaurantId(), voteTO.getDate());
     }
 
     private int getCurrentUserId(){

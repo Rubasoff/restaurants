@@ -65,11 +65,10 @@ public class Application {
             @Override
             protected void configure(HttpSecurity http) throws Exception {
                 http.authorizeRequests()
-                        .antMatchers("**/admin/**").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.POST, "/rest/v1/restaurants/").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.POST, "/rest/v1/restaurants/**/menu").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.PUT, "/rest/v1/restaurants/**").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.DELETE, "/rest/v1/restaurants/**").hasRole("ADMIN")
+                        .antMatchers("***/admin/***").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.POST, "/rest/v1/restaurants/***").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.PUT, "/rest/v1/restaurants/***").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.DELETE, "/rest/v1/restaurants/***").hasRole("ADMIN")
                         .anyRequest().fullyAuthenticated()
                         .and().httpBasic()
                         .and().csrf().disable();

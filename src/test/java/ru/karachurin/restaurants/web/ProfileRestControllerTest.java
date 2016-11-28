@@ -4,13 +4,14 @@ import org.junit.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import ru.karachurin.restaurants.model.User;
+import ru.karachurin.restaurants.to.UserVoteTO;
 import ru.karachurin.restaurants.web.json.JsonUtil;
+
+import java.time.LocalDateTime;
 
 import static org.hamcrest.core.Is.is;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -45,6 +46,12 @@ public class ProfileRestControllerTest extends AbstractRestControllerTest {
         User updated = new User(USER_ID, "newName", "newemail@ya.ru", "newPassword");
         mockMvc.perform(put(REST_URL).contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
+                .andExpect(status().isOk());
+    }
+    @Test
+    public void testVote() throws Exception {
+        mockMvc.perform(post(REST_URL + "/vote").contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(new UserVoteTO(LocalDateTime.now(), 100100))))
                 .andExpect(status().isOk());
     }
 

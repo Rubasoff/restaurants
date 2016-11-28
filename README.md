@@ -18,7 +18,7 @@ the response will contain the count of votes from the whole period or only for t
 # Rest API:
 
 # /rest/v1/profile/vote
-POST(consume JSON) - make vote for restaurant.<br />
+<b>POST (consume JSON)<b> - make vote for restaurant.<br />
 Consumed JSON example:<br />
 {<br />
 	"date": "2016-11-27T11:50:00",<br />

@@ -17,94 +17,94 @@ the response will contain the count of votes from the whole period or only for t
 
 # Rest API:
 # /rest/v1/restaurants 
-GET - gets all restaurants with menus and votes count for all time
-Example produces JSON:
- [
-       {
-       "id": 100100,
-       "name": "Pushkin",
-       "address": "Pushkin st. 53",
-       "contacts": "+7 937 777 777",
-       "menu":       [
-                   {
-             "id": 100002,
-             "name": "Pasta",
-             "price": 40.5
-          },
-                   {
-             "id": 100003,
-             "name": "Pizza",
-             "price": 10
-          },
-                   {
-             "id": 100004,
-             "name": "Steak",
-             "price": 70.3
-          }
-       ],
-       "votesCount": 3
-    },
-       {
-       "id": 100101,
-       "name": "Gogol",
-       "address": "Gogol st. 40",
-       "contacts": "+7 937 234 111",
-       "menu": [      {
-          "id": 100005,
-          "name": "Steak",
-          "price": 170.3
-       }],
-       "votesCount": 1
-    }
- ]
+GET - gets all restaurants with menus and votes count for all time<br />
+Example produces JSON:<br />
+ [<br />
+       {<br />
+       "id": 100100,<br />
+       "name": "Pushkin",<br />
+       "address": "Pushkin st. 53",<br />
+       "contacts": "+7 937 777 777",<br />
+       "menu":       [<br />
+                   {<br />
+             "id": 100002,<br />
+             "name": "Pasta",<br />
+             "price": 40.5<br />
+          },<br />
+                   {<br />
+             "id": 100003,<br />
+             "name": "Pizza",<br />
+             "price": 10<br />
+          },<br />
+                   {<br />
+             "id": 100004,<br />
+             "name": "Steak",<br />
+             "price": 70.3<br />
+          }<br />
+       ],<br />
+       "votesCount": 3<br />
+    },<br />
+       {<br />
+       "id": 100101,<br />
+       "name": "Gogol",<br />
+       "address": "Gogol st. 40",<br />
+       "contacts": "+7 937 234 111",<br />
+       "menu": [      {<br />
+          "id": 100005,<br />
+          "name": "Steak",<br />
+          "price": 170.3<br />
+       }],<br />
+       "votesCount": 1<br />
+    }<br />
+ ]<br />
 
-POST (consume json) - create a new restaurant and return it (Only ADMIN role)
-Example consumed JSON:
-{
-      "name": "New",
-      "address": "New  st. 10",
-      "contacts": "+7 937 234 111"
- }
- Example produces JSON:
- {
-    "id": 100102,
-    "name": "New",
-    "address": "New  st. 10",
-    "contacts": "+7 937 234 111",
-    "menu": null,
-    "votesCount": 0
- }
+POST (consume json) - create a new restaurant and return it (Only ADMIN role)<br />
+Example consumed JSON:<br />
+{<br />
+      "name": "New",<br />
+      "address": "New  st. 10",<br />
+      "contacts": "+7 937 234 111"<br />
+ }<br />
+ Example produces JSON:<br />
+ {<br />
+    "id": 100102,<br />
+    "name": "New",<br />
+    "address": "New  st. 10",<br />
+    "contacts": "+7 937 234 111",<br />
+    "menu": null,<br />
+    "votesCount": 0<br />
+ }<br />
 
-# /rest/v1/restaurants/{id}
-GET - gets restaurant from id with menu
-PUT (consume json) - update a restaurant with id (Only ADMIN role)
+# /rest/v1/restaurants/{id}<br />
+GET - gets restaurant from id with menu<br />
+PUT (consume json) - update a restaurant with id (Only ADMIN role)<br />
 
-# /rest/v1/restaurants/{id}/menu
-GET - gets menu from restaurant with id
-[
-   {
-      "id": 100002,
-      "name": "Pasta",
-      "price": 40.5
-   },
+# /rest/v1/restaurants/{id}/menu<br />
+GET - gets menu from restaurant with id<br />
+[<br />
+   {<br />
+      "id": 100002,<br />
+      "name": "Pasta",<br />
+      "price": 40.5<br />
+   },<br />
+      {<br />
+      "id": 100003,<br />
+      "name": "Pizza",<br />
+      "price": 10<br />
+   },<br />
       {
-      "id": 100003,
-      "name": "Pizza",
-      "price": 10
-   },
-      {
-      "id": 100004,
-      "name": "Steak",
-      "price": 70.3
-   }
-]
+      "id": 100004,<br />
+      "name": "Steak",<br />
+      "price": 70.3<br />
+   }<br />
+]<br />
 
-POST (consume json) - add a new dish to restaurant menu (Only ADMIN role)
-Example consumed JSON:
-{
-      "name": "Soup",
-      "price": 10.5
- }
+POST (consume json) - add a new dish to restaurant menu (Only ADMIN role)<br />
+Example consumed JSON:<br />
+{<br />
+      "name": "Soup",<br />
+      "price": 10.5<br />
+ }<br />
 
-# /rest/v1/restaurants/{id}/menu/{dishId}
-GET - get dish
+# /rest/v1/restaurants/{id}/menu/{dishId}<br />
+GET - get dish<br />

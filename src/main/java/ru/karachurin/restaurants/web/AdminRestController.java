@@ -26,7 +26,7 @@ public class AdminRestController {
     @Autowired
     UserService userService;
 
-    @GetMapping()
+    @GetMapping
     public List<User> getAll() {
         log.info("getAll");
         return userService.getAll();

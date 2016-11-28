@@ -16,5 +16,6 @@ public class UserTestData {
 
     public static final User USER = new User(USER_ID, "User", "user@yandex.ru", "password");
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin");
+    public static final User CREATED = new User(null, "New", "new@yandex.ru", "password");
 
 }

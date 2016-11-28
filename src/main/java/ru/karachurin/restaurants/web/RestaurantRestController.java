@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping(value = RestaurantRestController.REST_URL)
 public class RestaurantRestController {
     static final String REST_URL = "/rest/v1/restaurants";
-
+    //TODO logging
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired

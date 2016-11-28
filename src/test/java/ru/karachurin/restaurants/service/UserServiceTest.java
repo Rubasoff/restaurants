@@ -90,8 +90,8 @@ public class UserServiceTest extends AbstractServiceTest{
     }
 
     @Test(expected = DataAccessException.class)
-    public void testDuplicateMailSave() throws Exception {
-        service.save(new User(null, "Duplicate", "user@yandex.ru", "newPass"));
+    public void testDuplicateUsername() throws Exception {
+        service.save(new User(null, "User", "user@yandex.ru", "newPass"));
     }
 
     @Test

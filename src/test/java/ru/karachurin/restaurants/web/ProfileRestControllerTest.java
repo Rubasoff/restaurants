@@ -45,7 +45,6 @@ public class ProfileRestControllerTest extends AbstractRestControllerTest {
         User updated = new User(USER_ID, "newName", "newemail@ya.ru", "newPassword");
         mockMvc.perform(put(REST_URL).contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
-                .andDo(print())
                 .andExpect(status().isOk());
     }
 

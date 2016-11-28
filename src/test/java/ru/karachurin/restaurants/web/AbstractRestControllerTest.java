@@ -16,9 +16,7 @@ import ru.karachurin.restaurants.service.UserService;
 import java.util.Arrays;
 
 import static org.mockito.BDDMockito.given;
-import static ru.karachurin.restaurants.testData.UserTestData.ADMIN;
-import static ru.karachurin.restaurants.testData.UserTestData.USER;
-import static ru.karachurin.restaurants.testData.UserTestData.USER_ID;
+import static ru.karachurin.restaurants.testData.UserTestData.*;
 
 /**
  * Created by Денис on 28.11.2016.
@@ -43,5 +41,6 @@ public class AbstractRestControllerTest {
         given(userService.get(USER_ID)).willReturn(USER);
         given(userService.getByUsername("User")).willReturn(USER);
         given(userService.getAll()).willReturn(Arrays.asList(USER, ADMIN));
+        given(userService.save(USER)).willReturn(USER);
     }
 }

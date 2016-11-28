@@ -25,14 +25,14 @@ Consumed JSON example:<br />
 	"restaurantId": 100100<br />
 }<br />
 CURL example:<br />
-curl -H 'Content-Type: application/json' -X POST -d @jsonfile.txt http://localhost:8080/rest/v1/profile/vote<br />
+curl -H 'Content-Type: application/json' -X POST -d @jsonfile.txt --user User:password http://localhost:8080/rest/v1/profile/vote<br />
 
 # /rest/v1/restaurants 
 <b>GET</b> - gets all restaurants with menus and votes count for all time, or on date if use a date request parameter<br />
 CURL example:<br />
-http://localhost:8080/rest/v1/restaurants<br />
+curl --user User:password http://localhost:8080/rest/v1/restaurants<br />
 or <br />
-http://localhost:8080/rest/v1/restaurants?date=2016-11-19<br />
+curl --user User:password http://localhost:8080/rest/v1/restaurants?date=2016-11-19<br />
 Produced JSON example:<br />
  [<br />
        {<br />
@@ -73,9 +73,9 @@ Produced JSON example:<br />
     }<br />
  ]<br />
 
-</b>POST<b> (consume JSON, produce JSON) - create a new restaurant and return it (Only ADMIN role)<br />
+<b>POST</b> (consume JSON, produce JSON) - create a new restaurant and return it (Only ADMIN role)<br />
 CURL example:<br />
-curl -H 'Content-Type: application/json' -X POST -d @jsonfile.txt http://localhost:8080/rest/v1/restaurants<br />
+curl -H 'Content-Type: application/json' -X POST -d @jsonfile.txt --user Admin:admin http://localhost:8080/rest/v1/restaurants<br />
 Consumed JSON example:<br />
 {<br />
       "name": "New",<br />
@@ -96,13 +96,13 @@ Produced JSON example:<br />
 # /rest/v1/restaurants/{id}<br />
 <b>GET</b> - gets restaurant from id with menu and votes count for all time, or on date if use a date request parameter<br />
 CURL example:<br />
-curl http://localhost:8080/rest/v1/restaurants/100100<br />
+curl --user User:password http://localhost:8080/rest/v1/restaurants/100100<br />
 or <br />
-curl http://localhost:8080/rest/v1/restaurants/100100?date=2016-11-19<br />
+curl --user User:password http://localhost:8080/rest/v1/restaurants/100100?date=2016-11-19<br />
 
 <b>PUT</b> (consume json) - update a restaurant with id (Only ADMIN role)<br />
 CURL example:<br />
-curl -H 'Content-Type: application/json' -X PUT -d @jsonfile.txt http://localhost:8080/rest/v1/restaurants/100100<br />
+curl -H 'Content-Type: application/json' -X PUT -d @jsonfile.txt --user Admin:admin http://localhost:8080/rest/v1/restaurants/100100<br />
 
 # /rest/v1/restaurants/{id}/menu<br />
 <b>GET</b> - gets menu from restaurant with id<br />
@@ -127,7 +127,7 @@ Produced JSON example:<br />
 
 <b>POST</b> (consume JSON, produce JSON) - add a new dish to restaurant menu (Only ADMIN role)<br />
 CURL example:<br />
-curl -H 'Content-Type: application/json' -X POST -d @jsonfile.txt http://localhost:8080/rest/v1/restaurants/100100/menu<br />
+curl -H 'Content-Type: application/json' -X POST -d @jsonfile.txt --user Admin:admin http://localhost:8080/rest/v1/restaurants/100100/menu<br />
 Consumed JSON example:<br />
 {<br />
       "name": "Soup",<br />

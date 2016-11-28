@@ -1,5 +1,7 @@
 package ru.karachurin.restaurants.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
@@ -25,6 +27,8 @@ import java.util.List;
 @RequestMapping(value = RestaurantRestController.REST_URL)
 public class RestaurantRestController {
     static final String REST_URL = "/rest/v1/restaurants";
+
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     RestaurantService restaurantService;

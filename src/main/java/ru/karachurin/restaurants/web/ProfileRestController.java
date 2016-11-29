@@ -3,13 +3,18 @@ package ru.karachurin.restaurants.web;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.karachurin.restaurants.model.User;
 import ru.karachurin.restaurants.service.UserService;
 import ru.karachurin.restaurants.to.UserVoteTO;
+
+import java.net.URI;
 
 /**
  * Created by Денис on 27.11.2016.
@@ -48,6 +53,14 @@ public class ProfileRestController {
     public void vote(@RequestBody UserVoteTO voteTO){
         log.info("vote "+voteTO);
         userService.doVote(getCurrentUserId(), voteTO.getRestaurantId(), voteTO.getDate());
+    }
+
+    @PostMapping(value = "/registration", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> register(@RequestBody User user){
+        User created = userService.save(user);
+        log.info("registered "+user);
+
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     private int getCurrentUserId(){

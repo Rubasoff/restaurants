@@ -12,10 +12,33 @@ If it is before 11:00 we asume that he changed his mind.<br />
 If it is after 11:00 then it is too late, vote can’t be changed<br />
 Each restaurant provides new menu each day.<br />
 
-The number of votes is displayed as a numeric field in JSON format. If the request doesn't contain a date as a parameter <br />
-the response will contain the count of votes from the whole period or only for the date parameter <br />
 
 # Rest API:
+<b>Hint:</b> The number of votes is displayed as a numeric field in JSON format. If the request doesn't contain a date as a parameter <br />
+the response will contain the count of votes from the whole period or only for the date parameter <br />
+
+# /rest/v1/profile/registration
+<b>POST (consume and produce JSON)</b> - register new user.<br />
+
+Consumed JSON example:<br />
+{<br />
+	"name": "new user",<br />
+	"email": "mail@mail.ru",<br />
+	"password": "password"<br />
+}<br />
+
+CURL example:<br />
+curl -H 'Content-Type: application/json' -X POST -d @jsonfile.txt http://localhost:8080/rest/v1/profile/registration<br />
+
+Produced JSON example:<br />
+{
+   "id": 100010,
+   "name": "new user",
+   "email": "mail@mail.ru",
+   "password": "password",
+   "enabled": true,
+   "registered": 1480396232917
+}
 
 # /rest/v1/profile/vote
 <b>POST (consume JSON)</b> - make vote for restaurant.<br />
@@ -128,6 +151,7 @@ Produced JSON example:<br />
 <b>POST</b> (consume JSON, produce JSON) - add a new dish to restaurant menu (Only ADMIN role)<br />
 CURL example:<br />
 curl -H 'Content-Type: application/json' -X POST -d @jsonfile.txt --user Admin:admin http://localhost:8080/rest/v1/restaurants/100100/menu<br />
+
 Consumed JSON example:<br />
 {<br />
       "name": "Soup",<br />

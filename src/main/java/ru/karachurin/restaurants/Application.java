@@ -65,6 +65,7 @@ public class Application {
             @Override
             protected void configure(HttpSecurity http) throws Exception {
                 http.authorizeRequests()
+                        .antMatchers(HttpMethod.POST,"/rest/v1/profile/registration").permitAll()
                         .antMatchers("***/admin/***").hasRole("ADMIN")
                         .antMatchers(HttpMethod.POST, "/rest/v1/restaurants/***").hasRole("ADMIN")
                         .antMatchers(HttpMethod.PUT, "/rest/v1/restaurants/***").hasRole("ADMIN")

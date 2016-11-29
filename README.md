@@ -14,7 +14,7 @@ Each restaurant provides new menu each day.<br />
 
 
 # Rest API:
-<b>Hint:</b> The number of votes is displayed as a numeric field in JSON format. If the request doesn't contain a date as a parameter <br />
+<b>Hint:</b> The number of restaurant votes is displayed as a numeric field in JSON format. If the request doesn't contain a date as a parameter <br />
 the response will contain the count of votes from the whole period or only for the date parameter <br />
 
 # /rest/v1/profile/registration
@@ -37,7 +37,7 @@ Produced JSON example:<br />
    "email": "mail@mail.ru",
    "password": "password",
    "enabled": true,
-   "registered": 1480396232917
+   "registered": 2016-11-29
 }
 
 # /rest/v1/profile/vote

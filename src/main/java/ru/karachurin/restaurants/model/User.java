@@ -1,5 +1,6 @@
 package ru.karachurin.restaurants.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.validator.constraints.Email;
@@ -35,6 +36,7 @@ public class User extends NamedEntity {
     @Column(name = "enabled", nullable = false)
     private boolean enabled = true;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
 

@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static ru.karachurin.restaurants.testData.UserTestData.CREATED;
 import static ru.karachurin.restaurants.testData.UserTestData.USER;
 import static ru.karachurin.restaurants.testData.UserTestData.USER_ID;
 
@@ -53,6 +54,12 @@ public class ProfileRestControllerTest extends AbstractRestControllerTest {
         mockMvc.perform(post(REST_URL + "/vote").contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(new UserVoteTO(LocalDateTime.now(), 100100))))
                 .andExpect(status().isOk());
+    }
+    @Test
+    public void testRegister() throws Exception {
+        mockMvc.perform(post(REST_URL + "/registration").contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(CREATED)))
+                .andExpect(status().isCreated());
     }
 
 }

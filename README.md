@@ -22,7 +22,7 @@ the response will contain the count of votes from the whole period or only for t
 
 Consumed JSON example:<br />
 {<br />
-	"name": "new user",<br />
+	"username": "new user",<br />
 	"email": "mail@mail.ru",<br />
 	"password": "password"<br />
 }<br />

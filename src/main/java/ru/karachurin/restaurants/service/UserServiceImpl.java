@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByUsername(String username) throws NotFoundException {
         Assert.notNull(username, "Username must not be null");
-        return ExceptionUtil.checkNotFound(userRepository.findByName(username), "username=" + username);
+        return ExceptionUtil.checkNotFound(userRepository.findByUsername(username), "username=" + username);
     }
 
     @Override

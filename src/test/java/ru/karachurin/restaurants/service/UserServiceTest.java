@@ -70,7 +70,7 @@ public class UserServiceTest extends AbstractServiceTest{
     @Test
     public void update() throws Exception {
         User updated = new User(USER);
-        updated.setName("UpdatedName");
+        updated.setUsername("UpdatedName");
         service.update(updated);
         assertEquals(updated, service.get(USER_ID));
     }

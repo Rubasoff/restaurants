@@ -20,8 +20,13 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "name", name = "users_unique_name_idx")})
-public class User extends NamedEntity {
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "username", name = "users_unique_username_idx")
+,@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
+public class User extends BaseEntity {
+
+    @NotEmpty
+    @Column(name = "username", nullable = false)
+    protected String username;
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -47,15 +52,16 @@ public class User extends NamedEntity {
         this(id, name, email, password, true);
     }
 
-    public User(Integer id, String name, String email, String password, boolean enabled) {
-        super(id, name);
+    public User(Integer id, String username, String email, String password, boolean enabled) {
+        super(id);
         this.email = email;
         this.password = password;
         this.enabled = enabled;
+        this.username = username;
     }
 
     public User(User u) {
-        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled());
+        this(u.getId(), u.getUsername(), u.getEmail(), u.getPassword(), u.isEnabled());
     }
 
     public String getEmail() {
@@ -90,13 +96,20 @@ public class User extends NamedEntity {
         this.registered = registered;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     @Override
     public String toString() {
         return "User{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", name=" + name +
+                ", name=" + username +
                 ", enabled=" + enabled +
                 '}';
     }

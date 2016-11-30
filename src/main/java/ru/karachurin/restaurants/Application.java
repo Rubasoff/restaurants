@@ -46,9 +46,9 @@ public class Application {
 
                 @Override
                 public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                    ru.karachurin.restaurants.model.User account = userRepository.findByName(username);
+                    ru.karachurin.restaurants.model.User account = userRepository.findByUsername(username);
                     if(account != null) {
-                        return new User(account.getName(), account.getPassword(), true, true, true, true,
+                        return new User(account.getUsername(), account.getPassword(), true, true, true, true,
                                 username.equals("Admin") ? AuthorityUtils.createAuthorityList("USER", "ADMIN") :AuthorityUtils.createAuthorityList("USER"));
                     } else {
                         throw new UsernameNotFoundException("could not find the user '"

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.karachurin.restaurants.model.User;
 import ru.karachurin.restaurants.service.UserService;
-import ru.karachurin.restaurants.to.UserVoteTO;
+
 
 import java.net.URI;
 
@@ -47,12 +47,6 @@ public class ProfileRestController {
         user.setId(getCurrentUserId());
         log.info("update " + user);
         userService.update(user);
-    }
-
-    @PostMapping(value = "/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void vote(@RequestBody UserVoteTO voteTO){
-        log.info("vote "+voteTO);
-        userService.doVote(getCurrentUserId(), voteTO.getRestaurantId(), voteTO.getDate());
     }
 
     @PostMapping(value = "/registration", consumes = MediaType.APPLICATION_JSON_VALUE)

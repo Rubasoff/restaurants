@@ -6,18 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.karachurin.restaurants.model.Dish;
 import ru.karachurin.restaurants.model.Restaurant;
+import ru.karachurin.restaurants.model.User;
 import ru.karachurin.restaurants.service.DishService;
 import ru.karachurin.restaurants.service.RestaurantService;
 import ru.karachurin.restaurants.service.UserService;
-import ru.karachurin.restaurants.to.UserVoteTO;
 import ru.karachurin.restaurants.util.exceptions.NotFoundException;
 
 import java.net.URI;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -110,4 +113,10 @@ public class RestaurantRestController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
+    @PostMapping(value = "/{id}/vote", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void vote(@PathVariable("id") int restaurantId){
+        log.info("vote ");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        userService.doVote(userService.getByUsername(auth.getName()), restaurantId, LocalDateTime.now());
+    }
 }

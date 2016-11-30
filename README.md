@@ -40,15 +40,10 @@ Produced JSON example:<br />
    "registered": 2016-11-29
 }
 
-# /rest/v1/profile/vote
-<b>POST (consume JSON)</b> - make vote for restaurant.<br />
-Consumed JSON example:<br />
-{<br />
-	"date": "2016-11-27T11:50:00",<br />
-	"restaurantId": 100100<br />
-}<br />
+# /rest/v1/restaurants/{id}/vote
+<b>POST</b> - make vote for restaurant.<br />
 CURL example:<br />
-curl -H 'Content-Type: application/json' -X POST -d @jsonfile.txt --user User:password http://localhost:8080/rest/v1/profile/vote<br />
+curl -X POST  --user User:password http://localhost:8080/rest/v1/restaurants/100100/vote<br />
 
 # /rest/v1/restaurants 
 <b>GET</b> - gets all restaurants with menus and votes count for all time, or on date if use a date request parameter<br />

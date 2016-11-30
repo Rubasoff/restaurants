@@ -24,7 +24,6 @@ import ru.karachurin.restaurants.service.DishService;
 import ru.karachurin.restaurants.service.RestaurantService;
 import ru.karachurin.restaurants.service.UserService;
 import ru.karachurin.restaurants.testData.DishTestData;
-import ru.karachurin.restaurants.to.UserVoteTO;
 import ru.karachurin.restaurants.web.json.JsonUtil;
 
 
@@ -124,6 +123,11 @@ public class RestaurantRestControllerTest extends AbstractRestControllerTest{
         mockMvc.perform(post(REST_URL + RESTAURANT1_ID+"/menu/").contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(created)))
                 .andExpect(status().isCreated());
+    }
+    @Test
+    public void testVote() throws Exception {
+        mockMvc.perform(post(REST_URL + "/100100/vote").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
 }

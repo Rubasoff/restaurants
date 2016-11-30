@@ -75,8 +75,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void doVote(int userId, int restaurantId, LocalDateTime date) {
-        User user = get(userId);
+    public void doVote(User user, int restaurantId, LocalDateTime date) {
         Restaurant restaurant = restaurantRepository.findOne(restaurantId);
 
         if (canVote(user, date)){

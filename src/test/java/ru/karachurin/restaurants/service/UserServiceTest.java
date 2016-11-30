@@ -97,7 +97,7 @@ public class UserServiceTest extends AbstractServiceTest{
     @Test
     public void testVote(){
         LocalDateTime dateTime = LocalDateTime.of(2016,11,20,12,00);
-        service.doVote(USER_ID, RESTAURANT1_ID, dateTime);
+        service.doVote(USER, RESTAURANT1_ID, dateTime);
         Vote vote = voteRepository.getByUserIdAndDate(USER_ID, dateTime.toLocalDate());
         assertThat(vote, is(not(nullValue())));
         assertEquals(vote.getDate(), dateTime.toLocalDate());
@@ -106,13 +106,13 @@ public class UserServiceTest extends AbstractServiceTest{
     @Test(expected = SameDayVoteException.class)
     public void testVoteOnSameDay(){
         LocalDateTime dateTime = LocalDateTime.of(2016,11,17,12,00);
-        service.doVote(USER_ID, RESTAURANT1_ID, dateTime);
+        service.doVote(USER, RESTAURANT1_ID, dateTime);
     }
 
     @Test
     public void testVoteSameDayBeforeEleven(){
         LocalDateTime dateTime = LocalDateTime.of(2016,11,17,10,00);
-        service.doVote(USER_ID, RESTAURANT1_ID, dateTime);
+        service.doVote(USER, RESTAURANT1_ID, dateTime);
         Vote vote = voteRepository.getByUserIdAndDate(USER_ID, dateTime.toLocalDate());
         assertThat(vote, is(not(nullValue())));
         assertEquals(vote.getDate(), dateTime.toLocalDate());

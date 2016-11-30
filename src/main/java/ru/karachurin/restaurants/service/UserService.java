@@ -26,5 +26,5 @@ public interface UserService {
 
     void enable(int id, boolean enable);
 
-    void doVote(int userId, int restaurantId, LocalDateTime date);
+    void doVote(User user, int restaurantId, LocalDateTime date);
 }

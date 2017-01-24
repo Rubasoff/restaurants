@@ -6,6 +6,8 @@ import org.springframework.http.MediaType;
 import ru.karachurin.restaurants.model.User;
 import ru.karachurin.restaurants.web.json.JsonUtil;
 
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -23,6 +25,7 @@ import static ru.karachurin.restaurants.testData.UserTestData.USER_ID;
 @WebMvcTest(AdminRestController.class)
 public class AdminRestControllerTest extends AbstractRestControllerTest {
     private static final String REST_URL = AdminRestController.REST_URL + '/';
+
 
     @Test
     public void testGetAll() throws Exception {

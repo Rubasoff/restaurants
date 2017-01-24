@@ -98,6 +98,7 @@ public class RestaurantRestControllerTest extends AbstractRestControllerTest{
     public void testGetDish() throws Exception {
         mockMvc.perform(get(REST_URL + RESTAURANT1_ID+"/menu/"+DISH1_ID))
                 .andExpect(status().isOk());
+        String test;
     }
     @WithMockUser(username="Admin",roles={"ADMIN"})
     @Test
